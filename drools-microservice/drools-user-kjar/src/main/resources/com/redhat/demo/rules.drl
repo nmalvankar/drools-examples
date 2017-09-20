@@ -1,0 +1,34 @@
+package com.redhat.demo;
+import com.redhat.demo.model.*;
+
+rule "Category By Age: Adult"
+    when
+        $u: User( age >= 18, category == null ||  == "")
+    then
+        $u.setCategory("Adult");
+        update($u);
+end
+
+rule "Category By Age: Teenager"
+    when
+        $u: User( age > 12 && < 18, category == null || == "")
+    then
+        $u.setCategory("Teenager");
+        update($u);
+end
+
+rule "Category By Age: Children"
+    when
+        $u: User( age < 12 && >= 0, category == null || == "")
+    then
+        $u.setCategory("Children");
+        update($u);
+end
+
+rule "Category By Age: Not Valid"
+    when
+        $u: User( age < 0, category == null || == "")
+    then
+        $u.setCategory("Not Valid");
+end
+

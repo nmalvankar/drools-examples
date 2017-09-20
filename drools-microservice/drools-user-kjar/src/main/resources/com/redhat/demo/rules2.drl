@@ -1,0 +1,16 @@
+package com.redhat.demo;
+import com.redhat.demo.model.*;
+
+rule "Comments By Category: Adult"
+    when
+        $u: User( category == "Adult")
+    then
+        $u.setComments("This is an Adult");
+end
+
+rule "Comments By Category: Teenager"
+    when
+        $u: User( category == "Teenager")
+    then
+        $u.setComments("This is Teenager");
+end
